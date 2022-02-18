@@ -20,8 +20,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a th:href="@{/search}">Search</a></li>
-                    <li><a th:href="@{/list}">List</a></li>
+                    <th:block th:each="link : ${actions}">
+                    <li><a th:href="'/' + ${link.key}" th:text="${link.value}">Search</a></li>
                 </ul>
             </div>
         </div>
