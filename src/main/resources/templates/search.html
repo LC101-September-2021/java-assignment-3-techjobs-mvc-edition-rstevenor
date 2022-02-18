@@ -20,7 +20,7 @@
                         name="searchType"
                         th:id="${column.key}"
                         th:value="${column.key}"
-                        th:checked="${column.key == 'all'}"/>
+                        th:checked="${column.key == lastColumn}"/>
                 <label th:for="${column.key}" th:text="${column.value}"></label>
             </span>
 
@@ -37,6 +37,15 @@
     <hr />
 
     <!-- TODO #4 - Loop over the search results to display all job fields. -->
+    <!-- Loops to display job results in individual tables. -->
+    <table th:each = "job : ${jobs}" class="job-listing">
+        <tr><td><b>ID</b></td><td th:text="${job.id}"></td></tr>
+        <tr><td><b>Name</b></td><td th:text="${job.name}"></td></tr>
+        <tr><td><b>Employer</b></td><td><a th:href="'/list/jobs?column=employer&value=' + ${job.employer}" th:text="${job.employer}"></a></td></tr>
+        <tr><td><b>Location</b></td><td> <a th:href="'/list/jobs?column=location&value=' + ${job.location}" th:text="${job.location}"></a></td></tr>
+        <tr><td><b>Position Type</b></td><td> <a th:href="'/list/jobs?column=positionType&value=' + ${job.positionType}" th:text="${job.positionType}"></a></td></tr>
+        <tr><td><b>Skill</b></td><td> <a th:href="'/list/jobs?column=coreCompetency&value=' + ${job.coreCompetency}" th:text="${job.coreCompetency}"></a></td></tr>
+    </table>
 
 </div>
 
